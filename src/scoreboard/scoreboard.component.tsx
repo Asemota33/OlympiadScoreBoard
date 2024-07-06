@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import { Game } from "./Interfaces/Games.interface";
 import { FooterValue } from "./Interfaces/FooterValues.interface";
+import { Link, NavLink } from "react-router-dom";
 
 const initialColumnOrder = [
   "events",
@@ -164,12 +165,12 @@ const Scoreboard = () => {
 
   const updateColumnOrder = () => {
     const entries = Object.entries(allScores);
-    let newEntriesArray = entries.sort(([,valA], [,valB]) => valA - valB)
+    let newEntriesArray = entries.sort(([, valA], [, valB]) => valA - valB);
     newEntriesArray.reverse();
-    const colorsArray = newEntriesArray.map(obj => obj[0]);
-    colorsArray.unshift("events")
-    console.log(entries)
-    console.log(colorsArray)
+    const colorsArray = newEntriesArray.map((obj) => obj[0]);
+    colorsArray.unshift("events");
+    console.log(entries);
+    console.log(colorsArray);
     setColumnOrder(colorsArray);
   };
 
@@ -184,53 +185,7 @@ const Scoreboard = () => {
           />
         </div>
       </div>
-      {/* Form */}
-      <div className="row mt-5">
-        {/* Event Dropdown */}
-        <FormControl>
-          <InputLabel id="demo-simple-select-label">Event</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            //   value={age}
-            label="Age"
-            onChange={handleChange}
-          >
-            {tableData.map((tableRow) => (
-              <MenuItem value={tableRow.events}>{tableRow.events}</MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>Choose Event to update</FormHelperText>
-        </FormControl>
-      </div>
-      {/* First Place Dropdown */}
-      <div className="row mt-5">
-        <FormControl>
-          <InputLabel id="demo-simple-select-label">First Place</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            //   value={age}
-            label="firstPlace"
-            onChange={handleChangePlace}
-          >
-            {initialColumnOrder.slice(1).map((column) => (
-              <MenuItem value={column}>{column}</MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>Choose First Place Team Of Event</FormHelperText>
-        </FormControl>
-
-        {/* Send Button */}
-        <div className="row mt-5">
-          <Button
-            variant="contained"
-            onClick={() => updateData(5, teamText, eventText)}
-          >
-            Send
-          </Button>
-        </div>
-      </div>
+      
     </div>
   );
 };
